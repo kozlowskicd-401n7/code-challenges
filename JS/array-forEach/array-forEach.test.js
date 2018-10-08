@@ -14,6 +14,7 @@ const pushIntoSecond = (arr) => {
   for(let i = 0; i < arr.length; i++) {
       second.push(arr[i]);
   }
+  return second;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -27,12 +28,10 @@ const pushIntoSecond = (arr) => {
 // As we did in Challenge 1, return a new array of scores that have had the bonus points added.
 // ------------------------------------------------------------------------------------------------
 
-const addBonusPoints = (...arr) => {
-  let scoreArray = arr;
-  
-  for (let score of scoreArray) {
-    score += 5;
-    break;
+const addBonusPoints = (arr) => {
+  let scoreArray = [];
+  for (let score of arr) {
+    scoreArray.push(score+5);
   }
   return scoreArray;
 }
@@ -48,7 +47,12 @@ const addBonusPoints = (...arr) => {
 // ------------------------------------------------------------------------------------------------
 
 const addCurve = (arr) => {
-  // Solution code here...
+  let curvedArray = [];
+  curvedArray.length = arr.length;
+  for (let score in arr) {
+    curvedArray = (score * 1.05);
+  }
+  return curvedArray;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -61,11 +65,12 @@ const addCurve = (arr) => {
 // ------------------------------------------------------------------------------------------------
 
 const greeting = (word) => {
-  // Solution code here...
+  return word.toUpperCase();
 }
 
 const speaker = (message, callback) => {
-  // Solution code here...
+  callback = greeting(message);
+  return callback;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -86,11 +91,15 @@ const speaker = (message, callback) => {
 // ------------------------------------------------------------------------------------------------
 
 const addValues = (arr, value) => {
-  // Solution code here...
+  arr.push(value);
 }
 
 const addNumbers = (num, arr, times, callback) => {
-  // Solution code here...
+  callback = addValues(arr, num);
+  for (let i = 1; i < times; i++) {
+    addValues(arr, num)
+  }
+  return arr;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -108,11 +117,16 @@ const addNumbers = (num, arr, times, callback) => {
 // ------------------------------------------------------------------------------------------------
 
 const removeOne = (num, arr) => {
-  // Solution code here...
+  if (num % 3 === 2) {
+    arr.pop();
+  }
 }
 
-const removeElements = (arr, callback) => {
-  // Solution code here...
+const removeElements = (arr, removeOne) => {
+  for (let i = 0; i < arr.length; i++) {
+    removeOne(i+1, arr);
+  }
+  return arr;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -121,8 +135,11 @@ const removeElements = (arr, callback) => {
 // Write a function named removeWithForEach that produces the same output as challenge 6, but uses forEach.
 // ------------------------------------------------------------------------------------------------
 
-const removeWithForEach = (arr, callback) => {
-  // Solution code here...
+const removeWithForEach = (arr, removeOne) => {
+  arr.forEach((num) => {
+    removeOne(num, arr);
+  })
+  return arr;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -137,7 +154,9 @@ const removeWithForEach = (arr, callback) => {
 // ------------------------------------------------------------------------------------------------
 
 const removeWithAnon = (input) => {
-  // Solution code here...
+  input.forEach((ele,index,arr) => {
+    
+  });
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -159,7 +178,13 @@ const removeWithAnon = (input) => {
 // ------------------------------------------------------------------------------------------------
 
 const createList = (availableItems) => {
-  // Solution code here...
+  const groceryList = [];
+  availableItems.forEach((item) => {
+    if (item.available === true) {
+      groceryList.push(item.name);
+    }
+  });
+  return groceryList;
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -177,7 +202,20 @@ const createList = (availableItems) => {
 // ------------------------------------------------------------------------------------------------
 
 const fizzbuzz = (arr) => {
-  // Solution code here...
+  let output = [];
+  arr.forEach((num) => {
+    if ((num % 3) === 0 && (num % 5) !== 0) {
+      output.push('Fizz');
+    }
+    else if ((num % 5 === 0) && (num % 3 !== 0)) {
+      output.push('Buzz');
+    }
+    else if ((num % 5 === 0) && (num % 3 === 0)) {
+      output.push('Fizz Buzz');
+    }
+    else {output.push(num)}
+  });
+  return output;
 }
 
 // ------------------------------------------------------------------------------------------------
