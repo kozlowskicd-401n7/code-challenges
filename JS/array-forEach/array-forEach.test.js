@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------------------------
 
 const pushIntoSecond = (arr) => {
-  const second = [];
+  let second = [];
   for(let i = 0; i < arr.length; i++) {
       second.push(arr[i]);
   }
@@ -27,8 +27,14 @@ const pushIntoSecond = (arr) => {
 // As we did in Challenge 1, return a new array of scores that have had the bonus points added.
 // ------------------------------------------------------------------------------------------------
 
-const addBonusPoints = (arr) => {
-  // Solution code here...
+const addBonusPoints = (...arr) => {
+  let scoreArray = arr;
+  
+  for (let score of scoreArray) {
+    score += 5;
+    break;
+  }
+  return scoreArray;
 }
 
 // ------------------------------------------------------------------------------------------------

@@ -1,3 +1,4 @@
+var assert = require('assert');
 // 4: template strings - String.raw
 // To do: make all tests pass, leave the asserts unchanged!
 
@@ -12,7 +13,7 @@ describe('on tagged template strings you can use the `raw` property like so `s.r
   
     it('`raw` can access the backslash of a line-break', function() {
       function firstCharEntered(strings) {
-        var lineBreak = strings;
+        var lineBreak = strings.raw;
         return lineBreak;
       }
       assert.equal(firstCharEntered`\n`, '\\');
@@ -21,7 +22,7 @@ describe('on tagged template strings you can use the `raw` property like so `s.r
     describe('`String.raw` as a static function', function(){
       
       it('concats the raw strings', function() {
-        var expected = '\n';
+        var expected = function() { '\n' };
         assert.equal(String.raw`\n`, expected);
       });
       
